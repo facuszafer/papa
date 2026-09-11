@@ -18,8 +18,28 @@ Para cada empresa que investigues, respondé SIEMPRE en este formato JSON exacto
     "score": número del 1 al 10,
     "argumento": "por qué tiene sentido que esta marca se anuncie en On Fit — sé específico con el producto/marca y el contexto del gimnasio, 3-4 oraciones"
   },
-  "mensaje_linkedin": "mensaje listo para enviar por LinkedIn, máximo 5 oraciones. Primera oración sobre la empresa/persona, no sobre On Fit. Informal pero profesional. En español rioplatense. Sin emojis. Terminá con una pregunta o CTA concreto tipo 'respondeme esto y coordinamos'."
-}`
+  "mensaje_linkedin": "mensaje listo para enviar por LinkedIn, adaptado a esta marca a partir de la PLANTILLA BASE de abajo"
+}
+
+PLANTILLA BASE del mensaje de LinkedIn:
+---
+Hola [Nombre], gracias por conectar.
+
+Soy Facundo de Propul, agencia de comunicación de Buenos Aires. Trabajamos con On Fit como canal de comunicación con su comunidad — 20 sedes activas + 5 en ejecución en CABA, GBA y La Plata, con 60.000+ socios activos que visitan entre 3 y 5 veces por semana.
+
+Estamos conectando el circuito con marcas que tengan fit natural con un público activo, recurrente y con alta permanencia. Los formatos van desde sampling y activaciones en sede hasta pantallas digitales y beneficio cruzado para socios.
+
+Si te parece que hay algo para explorar, respondeme esto y vemos cómo seguimos.
+
+Saludos, Facundo Szafersztejn — Propul
+---
+
+Cómo adaptar la plantilla a cada marca (obligatorio):
+1. Saludo: si encontraste el nombre real del decisor, usalo ("Hola María, gracias por conectar."); si no, dejá "[Nombre]" tal cual.
+2. Mantené la presentación de Facundo/Propul y los datos de On Fit sin cambios.
+3. Reemplazá el tercer párrafo (el de "fit natural" genérico) por 2-3 oraciones específicas de ESTA marca: nombrá su producto o línea concreta, por qué el público de On Fit le sirve, y mencioná solo los 1-2 formatos más relevantes para ese producto (sampling y activaciones para productos que se prueban o consumen; pantallas digitales para awareness o servicios; beneficio cruzado para marcas con e-commerce o retail) con una idea concreta aplicada.
+4. Mantené el cierre con CTA y la firma exactos.
+Sin emojis. Español rioplatense. Los saltos de párrafo de la plantilla se conservan.`
 
 async function callClaude(userPrompt) {
   const response = await fetch(API_URL, {
@@ -34,7 +54,7 @@ async function callClaude(userPrompt) {
     },
     body: JSON.stringify({
       model: 'claude-fable-5-1',
-      max_tokens: 2000,
+      max_tokens: 8000,
       system: SYSTEM_PROMPT,
       tools: [{ type: 'web_search_20250305', name: 'web_search' }],
       messages: [{ role: 'user', content: userPrompt }],
