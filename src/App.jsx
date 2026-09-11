@@ -10,7 +10,15 @@ function App() {
 
       <main className="layout">
         <div className="layout__left">
-          <SearchPanel />
+          <SearchPanel
+            onInvestigate={(empresa, rubroDecisor) =>
+              console.log('investigate', empresa, rubroDecisor)
+            }
+            onSuggest={(descripcion, cantidad) =>
+              console.log('suggest', descripcion, cantidad)
+            }
+            isLoading={false}
+          />
         </div>
         <div className="layout__right">
           <div className="results">Los resultados aparecen acá</div>
