@@ -57,12 +57,27 @@ function App() {
     }
   }
 
+  const hasApiKey = Boolean(import.meta.env.VITE_ANTHROPIC_API_KEY)
+
   return (
     <>
       <header className="header">
         <span className="header__brand">ON FIT</span>
         <span className="header__subtitle">/ Agente de Prospecting</span>
+        {results.length > 0 && (
+          <span className="header__count">
+            {results.length === 1
+              ? '1 empresa analizada'
+              : `${results.length} empresas analizadas`}
+          </span>
+        )}
       </header>
+
+      {!hasApiKey && (
+        <div className="config-banner">
+          Falta configurar VITE_ANTHROPIC_API_KEY en .env.local
+        </div>
+      )}
 
       <main className="layout">
         <div className="layout__left">

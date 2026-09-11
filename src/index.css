@@ -99,6 +99,34 @@ button {
   color: var(--text-secondary);
 }
 
+.header__count {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Banner de configuración faltante (debajo del header fijo) */
+.config-banner {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  z-index: 90;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  background-color: #2A0F0D;
+  border-bottom: 1px solid #FF453A;
+  color: #FF453A;
+  font-size: 14px;
+}
+
+.config-banner + .layout {
+  margin-top: calc(var(--header-height) + 44px);
+  height: calc(100vh - var(--header-height) - 44px);
+}
+
 /* Layout principal */
 .layout {
   display: flex;
@@ -118,6 +146,32 @@ button {
   flex: 1;
   min-width: 0;
   overflow-y: auto;
+}
+
+/* Mobile: una sola columna, SearchPanel arriba y resultados abajo */
+@media (max-width: 768px) {
+  .layout,
+  .config-banner + .layout {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .layout__left,
+  .layout__right {
+    flex: none;
+    width: 100%;
+    overflow-y: visible;
+  }
+
+  .results {
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__subtitle {
+    display: none;
+  }
 }
 
 /* Área de resultados */
